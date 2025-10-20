@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ## Overview
 A containerized, service-oriented project that uses a Convolutional Neural Network (CNN) to detect crop leaf diseases from images.  
 Trained on the PlantVillage dataset and deployed via a REST API for web/mobile clients.
@@ -19,3 +20,6 @@ docker compose exec dev python /app/src/preprocess.py
 
 # 3) Open Jupyter: http://localhost:8888 (token printed in logs)
 # 4) View notebook: notebooks/01_preprocessing.ipynb
+=======
+# Plant-Disease-Detection-As-A-Service
+>>>>>>> e3877acee0ffaa9738d7a2b4b9bd6443c117fda0
