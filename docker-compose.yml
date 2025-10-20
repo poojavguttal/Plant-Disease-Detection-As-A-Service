@@ -1,0 +1,14 @@
+services:
+  dev:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    volumes:
+      - ./data:/app/data       # bind-mount data
+      - ./notebooks:/app/notebooks
+      - ./src:/app/src
+      - ./configs:/app/configs
+    ports:
+      - "8888:8888"
+    environment:
+      - PYTHONUNBUFFERED=1

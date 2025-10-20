@@ -1,0 +1,19 @@
+include_crops:
+  - Apple
+  - Blueberry
+  - Cherry
+  - Corn
+  - Grape
+  - Orange
+  - Peach
+  - Pepper
+  - Potato
+  - Raspberry
+  - Soyabean
+  - Squash
+  - Strawberry
+  - Tomato
+min_images_per_class: 50
+image_size: 224
+val_ratio: 0.15
+test_ratio: 0.15

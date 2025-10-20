@@ -1,0 +1,33 @@
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Data and artifacts
+data/
+!data/.gitkeep
+*.zip
+*.tar
+*.h5
+*.hdf5
+*.tflite
+*.onnx
+*.pth
+
+# Jupyter checkpoints
+*.ipynb_checkpoints
+
+# Environment
+.env
+*.DS_Store
+
+# Docker
+*.log
+**/.dockerignore
+
+# Notebook outputs (optional, if large)
+notebooks/*.ipynb
+
+# VSCode/IDE
+.vscode/
+.idea/
