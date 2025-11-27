@@ -8,7 +8,9 @@ services:
       - ./notebooks:/app/notebooks
       - ./src:/app/src
       - ./configs:/app/configs
+      - ./models:/app/models 
     ports:
       - "8888:8888"
     environment:
       - PYTHONUNBUFFERED=1
+
