@@ -5,8 +5,8 @@ from io import BytesIO
 from PIL import Image
 
 #
-model = load_model("model/plant_disease_cnn.keras")
-class_names = np.load("model/class_names.npy")
+model = load_model("models/plant_disease_cnn.keras")
+class_names = np.load("models/class_names.npy")
 
 async def predict_image(file):
     img_bytes = await file.read()

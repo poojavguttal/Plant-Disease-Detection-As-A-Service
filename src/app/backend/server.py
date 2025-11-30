@@ -9,13 +9,31 @@ from io import BytesIO
 import google.generativeai as genai
 
 # Load .env file
-load_dotenv()
-GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+# load_dotenv()
+# GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 
-# Configure Gemini
-genai.configure(api_key=GEMINI_API_KEY)
+# # Configure Gemini
+# genai.configure(api_key=GEMINI_API_KEY)
+import os
+from dotenv import load_dotenv
+
+# load_dotenv()  # Load .env locally
+
+# load_dotenv(dotenv_path="src/app/backend/.env")
+
+
+# print("KEY:", os.getenv("GOOGLE_API_KEY"))
+
+
+# GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "AIzaSyC0sIXnx8wyeyQafaVRDtDVQRAf0Iv7nPI")
+my_api_key = "AIzaSyC0sIXnx8wyeyQafaVRDtDVQRAf0Iv7nPI"
+genai.configure(api_key=my_api_key)
+
+
+
 
 app = FastAPI()
+
 
 app.add_middleware(
     CORSMiddleware,
@@ -25,9 +43,18 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Load model & class names
-model = load_model("/app/models/plant_disease_cnn.keras")
-class_names = np.load("/app/models/class_names.npy").tolist()
+
+
+model = load_model("models/plant_disease_cnn.keras")
+class_names = np.load("models/class_names.npy")
+
+# models = genai.list_models()
+# for model in models:
+#     # Some SDKs use 'supported_generation_methods', some 'supported_methods'
+#     supported = getattr(model, "supported_generation_methods", getattr(model, "supported_methods", []))
+#     if "generateContent" in supported:
+#         print(f"Name: {model.name}, Description: {getattr(model, 'description', 'No description')}")
+
 
 def preprocess(image_bytes):
     img = Image.open(BytesIO(image_bytes)).convert("RGB")
@@ -63,6 +90,6 @@ async def advice(data: dict):
     Confidence: {confidence}
     """
 
-    response = genai.GenerativeModel("gemini-1.5-flash").generate_content(prompt)
+    response = genai.GenerativeModel("models/gemini-flash-latest").generate_content(prompt)
 
     return { "advice": response.text }

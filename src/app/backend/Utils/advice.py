@@ -2,11 +2,24 @@ import os
 import google.generativeai as genai
 
 # Load API key from environment
-genai.configure(api_key=os.getenv(""))
+# genai.configure(api_key=os.getenv(""))
 
-model = genai.GenerativeModel("gemini-1.5-flash")
+import google.generativeai as genai
+
+import os
+from dotenv import load_dotenv
+
+# load_dotenv()  # Load .env locally
+
+# load_dotenv(dotenv_path="src/app/backend/.env")
+my_api_key = ""
+genai.configure(api_key=my_api_key)
+
+
+
 
 async def generate_advice(payload):
+    model = genai.GenerativeModel("models/gemini-flash-latest")
     system_prompt = f"""
     You are an agricultural extension advisor.
     Only use trusted sources: .edu, .gov, FAO.org, IPM guidelines.
