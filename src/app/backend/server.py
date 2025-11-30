@@ -25,7 +25,6 @@ from dotenv import load_dotenv
 # print("KEY:", os.getenv("GOOGLE_API_KEY"))
 
 
-# GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "AIzaSyC0sIXnx8wyeyQafaVRDtDVQRAf0Iv7nPI")
 my_api_key = "AIzaSyC0sIXnx8wyeyQafaVRDtDVQRAf0Iv7nPI"
 genai.configure(api_key=my_api_key)
 
