@@ -12,7 +12,7 @@ from dotenv import load_dotenv
 # load_dotenv()  # Load .env locally
 
 # load_dotenv(dotenv_path="src/app/backend/.env")
-my_api_key = ""
+my_api_key = "AIzaSyC0sIXnx8wyeyQafaVRDtDVQRAf0Iv7nPI"
 genai.configure(api_key=my_api_key)
 
 

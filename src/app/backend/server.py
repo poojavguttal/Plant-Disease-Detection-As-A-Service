@@ -25,7 +25,6 @@ from dotenv import load_dotenv
 # print("KEY:", os.getenv("GOOGLE_API_KEY"))
 
 
-# GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "AIzaSyC0sIXnx8wyeyQafaVRDtDVQRAf0Iv7nPI")
 my_api_key = "AIzaSyC0sIXnx8wyeyQafaVRDtDVQRAf0Iv7nPI"
 genai.configure(api_key=my_api_key)
 
@@ -81,15 +80,20 @@ async def predict(file: UploadFile = File(...)):
 async def advice(data: dict):
     label = data["label"]
     confidence = data["confidence"]
-    lang = data.get("lang", "English")
 
     prompt = f"""
-    You are an agricultural advisor. Only give advice based on trusted sources (.edu, .gov, FAO).
-    Answer in {lang}.
-    Disease: {label}
-    Confidence: {confidence}
-    """
+    You are an agricultural advisor. Give concise advice, precautions, and management strategies for the following crop disease.
+    Disease: {label}, Confidence: {confidence}.
+    Only use trusted sources (.edu, .gov, FAO) and mention them inline.
+    Format your response clearly with headings and bullet points, max 5 lines."""
 
     response = genai.GenerativeModel("models/gemini-flash-latest").generate_content(prompt)
 
     return { "advice": response.text }
+
+if __name__ == "__main__":
+    import uvicorn
+    import os
+
+    port = int(os.environ.get("PORT", 8080))
+    uvicorn.run("backend.server:app", host="0.0.0.0", port=port)
